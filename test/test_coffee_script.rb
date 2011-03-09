@@ -45,6 +45,11 @@ module CoffeeScriptTests
     assert_exception_does_not_match(/^Error: /) { CoffeeScript.compile("function") } # syntax error
   end
 
+  def test_percent_escapes_not_expanded
+    assert_equal "(function() {\n  '%d';\n}).call(this);\n",
+      CoffeeScript.compile("'%d'")
+  end
+
   def assert_exception_does_not_match(pattern)
     yield
     flunk "no exception raised"

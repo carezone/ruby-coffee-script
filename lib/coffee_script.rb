@@ -105,7 +105,7 @@ module CoffeeScript
         def compile(script, options = {})
           ExternalEngine.compile(binary, script, options) do |f|
             f.puts Source.contents
-            f.puts "var CoffeeScript = this.CoffeeScript, print = console.log;"
+            f.puts "var CoffeeScript = this.CoffeeScript, print = function(str) { console.log('%s', str); };"
           end
         end
       end
